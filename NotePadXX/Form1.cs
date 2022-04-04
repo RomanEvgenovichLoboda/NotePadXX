@@ -52,9 +52,9 @@ namespace NotePadXX
             //toolBar
             imList = new ImageList();
             imList.ImageSize = new Size(30, 30);
-            imList.Images.Add(new Bitmap("image.bmp"));
-            imList.Images.Add(new Bitmap("image.bmp"));
-            imList.Images.Add(new Bitmap("image.bmp"));
+            imList.Images.Add(new Bitmap("38.JPG"));
+            imList.Images.Add(new Bitmap("disk.PNG"));
+            imList.Images.Add(new Bitmap("image3.JPG"));
             tBar = new ToolBar();
             tBar.ImageList = imList;
             ToolBarButton toolBarButton1 = new ToolBarButton();
