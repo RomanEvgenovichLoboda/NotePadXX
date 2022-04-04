@@ -36,13 +36,15 @@ namespace NotePadXX
             close.ShortcutKeys = Keys.Alt | Keys.C;
             close.ShowShortcutKeys = true;
             close.Click += new System.EventHandler(close_Click);
+            file.DropDownItemClicked += new ToolStripItemClickedEventHandler(file_Click);
 
             //tabCtrl
             tabCtrl = new TabControl();
-
+            //tabCtrl.Padding = new Point(5, 10);
             this.Controls.Add(tabCtrl);
             this.tabCtrl.Size = this.ClientSize;
-            this.tabCtrl.Location = new Point(5, 90);
+            this.tabCtrl.Location = new Point(5, 70);
+
             this.tabCtrl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             this.tabCtrl.Controls.Add(new C_Tab("RMZS"));
             this.tabCtrl.Controls.Add(new C_Tab("ZBS"));
@@ -77,6 +79,10 @@ namespace NotePadXX
 
         }
         void close_Click(object sender, System.EventArgs e) { this.Close(); }
+        void file_Click(object sender, System.EventArgs e)
+        {
+            MessageBox.Show("BORODA");
+        }
     }
 }
 
