@@ -29,14 +29,15 @@ namespace NotePadXX
             menu.BackColor = Color.Coral;
             this.Controls.Add(menu);
             file.DropDownItems.Add("New");
-            file.DropDownItems.Add("Open");
+            ToolStripMenuItem open = (ToolStripMenuItem)file.DropDownItems.Add("Open");
             file.DropDownItems.Add("Save");
             file.DropDownItems.Add(new ToolStripSeparator());
             ToolStripMenuItem close = (ToolStripMenuItem)file.DropDownItems.Add("Close");
             close.ShortcutKeys = Keys.Alt | Keys.C;
             close.ShowShortcutKeys = true;
             close.Click += new System.EventHandler(close_Click);
-            file.DropDownItemClicked += new ToolStripItemClickedEventHandler(file_Click);
+            open.Click += new System.EventHandler(open_Click);
+            //file.DropDownItemClicked += new ToolStripItemClickedEventHandler(file_Click);
 
             //tabCtrl
             tabCtrl = new TabControl();
@@ -79,7 +80,7 @@ namespace NotePadXX
 
         }
         void close_Click(object sender, System.EventArgs e) { this.Close(); }
-        void file_Click(object sender, System.EventArgs e)
+        void open_Click(object sender, System.EventArgs e)
         {
             MessageBox.Show("BORODA");
         }
