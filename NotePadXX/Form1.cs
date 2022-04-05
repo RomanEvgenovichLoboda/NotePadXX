@@ -16,12 +16,13 @@ namespace NotePadXX
         MenuStrip menu;
         ToolBar tBar;
         ImageList imList;
+        My_TabControl MTControl = new My_TabControl();
 
         ToolStripMenuItem _new;
         public Form1()
         {
             InitializeComponent();
-
+            MTControl.Size = ClientSize;
             //toolStripmenu
             menu = new MenuStrip();
             ToolStripMenuItem file = (ToolStripMenuItem)menu.Items.Add("File");
@@ -42,15 +43,19 @@ namespace NotePadXX
             //file.DropDownItemClicked += new ToolStripItemClickedEventHandler(file_Click);
 
             //tabCtrl
-            tabCtrl = new TabControl();
-            //tabCtrl.Padding = new Point(5, 10);
-            this.Controls.Add(tabCtrl);
-            this.tabCtrl.Size = this.ClientSize;
-            this.tabCtrl.Location = new Point(0, 70);
-            this.tabCtrl.Padding = new Point(20, 4);
-            this.tabCtrl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            this.tabCtrl.Controls.Add(new C_Tab("RMZS"));
-            this.tabCtrl.Controls.Add(new C_Tab("ZBS"));
+            //tabCtrl = new TabControl();
+            ////tabCtrl.Padding = new Point(5, 10);
+            //this.Controls.Add(tabCtrl);
+            //this.tabCtrl.Size = this.ClientSize;
+            //this.tabCtrl.Location = new Point(0, 70);
+            //this.tabCtrl.Padding = new Point(20, 4);
+            //this.tabCtrl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            //this.tabCtrl.Controls.Add(new C_Tab("RMZS"));
+            //this.tabCtrl.Controls.Add(new C_Tab("ZBS"));
+            this.Controls.Add(MTControl);
+            MTControl.TabPages.Add(new TabPage());
+            MTControl.TabPages.Add(new C_Tab("dfgdfgd"));
+            //this.Controls.Add(MTControl);
 
             //toolBar
             imList = new ImageList();

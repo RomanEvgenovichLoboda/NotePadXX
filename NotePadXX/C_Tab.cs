@@ -9,7 +9,7 @@ namespace NotePadXX
 {
     class C_Tab:TabPage
     {
-        public C_Tab(string title)
+        public C_Tab(string title = "new")
         {
             this.Text = title;
             this.Controls.Add(new TextBox() { Multiline = true, Size = ClientSize, Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right });
