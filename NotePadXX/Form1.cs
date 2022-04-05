@@ -16,19 +16,21 @@ namespace NotePadXX
         MenuStrip menu;
         ToolBar tBar;
         ImageList imList;
+
+        ToolStripMenuItem _new;
         public Form1()
         {
             InitializeComponent();
 
-            //menuStrip
+            //toolStripmenu
             menu = new MenuStrip();
             ToolStripMenuItem file = (ToolStripMenuItem)menu.Items.Add("File");
             ToolStripMenuItem edit = (ToolStripMenuItem)menu.Items.Add("Edit");
-            //menu.Location = new Point(100,100);
+            //menu.Location = new Point(0,50);
             this.MainMenuStrip = menu;
             menu.BackColor = Color.Coral;
             this.Controls.Add(menu);
-            file.DropDownItems.Add("New");
+            _new = (ToolStripMenuItem)file.DropDownItems.Add("New");
             ToolStripMenuItem open = (ToolStripMenuItem)file.DropDownItems.Add("Open");
             file.DropDownItems.Add("Save");
             file.DropDownItems.Add(new ToolStripSeparator());
@@ -44,8 +46,8 @@ namespace NotePadXX
             //tabCtrl.Padding = new Point(5, 10);
             this.Controls.Add(tabCtrl);
             this.tabCtrl.Size = this.ClientSize;
-            this.tabCtrl.Location = new Point(5, 70);
-
+            this.tabCtrl.Location = new Point(0, 70);
+            this.tabCtrl.Padding = new Point(20, 4);
             this.tabCtrl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             this.tabCtrl.Controls.Add(new C_Tab("RMZS"));
             this.tabCtrl.Controls.Add(new C_Tab("ZBS"));
@@ -73,8 +75,9 @@ namespace NotePadXX
             tBar.Buttons.Add(toolBarButton3);
             tBar.Appearance = ToolBarAppearance.Flat;
             tBar.BorderStyle = BorderStyle.Fixed3D;
-            //tBar.Location = new Point(50, 50);
+            tBar.Location = new Point(0, 24);
             this.Controls.Add(tBar);
+            //this.Controls.Add(new My_ToolBar());
            
 
 
@@ -84,6 +87,10 @@ namespace NotePadXX
         {
             MessageBox.Show("BORODA");
         }
+        //void file_Click(object sender, ToolStripItemClickedEventHandler e)
+        //{
+        //    if (e == _new) { MessageBox.Show("New"); }
+        //}
     }
 }
 
