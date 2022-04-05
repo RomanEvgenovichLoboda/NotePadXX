@@ -32,7 +32,7 @@ namespace NotePadXX
             ToolStripMenuItem edit = (ToolStripMenuItem)menu.Items.Add("Edit");
             //menu.Location = new Point(0,50);
             this.MainMenuStrip = menu;
-            menu.BackColor = Color.Coral;
+            menu.BackColor = Color.BurlyWood;
             this.Controls.Add(menu);
             _new = (ToolStripMenuItem)file.DropDownItems.Add("New");
             ToolStripMenuItem open = (ToolStripMenuItem)file.DropDownItems.Add("Open");
