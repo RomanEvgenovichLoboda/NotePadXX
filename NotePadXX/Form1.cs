@@ -22,7 +22,6 @@ namespace NotePadXX
         {
             InitializeComponent();
             this.BackColor = Color.DarkSeaGreen;
-            MTControl.Size = ClientSize;
             //toolStripmenu
             menu = new MenuStrip();
             ToolStripMenuItem file = (ToolStripMenuItem)menu.Items.Add("File");
@@ -50,8 +49,8 @@ namespace NotePadXX
 
             //tabCtrl
             //MTControl.Click += ToolStripItemClickedEventHandler(MTControl_Click);
+            MTControl.Size = ClientSize;
             this.Controls.Add(MTControl);
-           ;
 
             //toolBar
             imList = new ImageList();
@@ -86,31 +85,36 @@ namespace NotePadXX
         }
         void font_ButtonClick(object sender, System.EventArgs e)
         {
-            using(FontDialog fd = new FontDialog())
+            try
             {
-                fd.ShowColor = true;
-                C_Tab temp = (C_Tab)MTControl.SelectedTab;
-                if (fd.ShowDialog() == DialogResult.OK)
+                using (FontDialog fd = new FontDialog())
                 {
-                    temp.tb.Font = fd.Font;
-                    temp.tb.ForeColor = fd.Color;
-
+                    fd.ShowColor = true;
+                    C_Tab temp = (C_Tab)MTControl.SelectedTab;
+                    if (fd.ShowDialog() == DialogResult.OK)
+                    {
+                        temp.tb.Font = fd.Font;
+                        temp.tb.ForeColor = fd.Color;
+                        temp.BackColor = fd.Color;
+                        temp.ForeColor = fd.Color;
+                    }
                 }
             }
+            catch (Exception m) { MessageBox.Show(m.Message); }
         }
 
         void color_ButtonClick(object sender, System.EventArgs e)
         {
-            using (ColorDialog cd = new ColorDialog())
+            try
             {
-                C_Tab temp = (C_Tab)MTControl.SelectedTab;
-               // cd.Color = temp.tb.BackColor;
-                if (cd.ShowDialog() == DialogResult.OK)
+                using (ColorDialog cd = new ColorDialog())
                 {
-                    temp.tb.BackColor = cd.Color;
-
+                    C_Tab temp = (C_Tab)MTControl.SelectedTab;
+                    cd.Color = temp.tb.BackColor;
+                    if (cd.ShowDialog() == DialogResult.OK) {temp.tb.BackColor = cd.Color;}
                 }
             }
+            catch (Exception m) {MessageBox.Show(m.Message);}
         }
         void open_Click(object sender, System.EventArgs e)
         {
@@ -143,11 +147,7 @@ namespace NotePadXX
                     }
                 }
             }
-            catch (Exception m)
-            {
-                MessageBox.Show(m.Message);
-            }
-
+            catch (Exception m) {MessageBox.Show(m.Message);}
         }
         void tBar_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
         {
