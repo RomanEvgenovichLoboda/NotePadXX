@@ -13,16 +13,11 @@ namespace NotePadXX
 {
     public partial class Form1 : Form
     {
-        // TabControl tabCtrl;
-        ToolTip tTip = new ToolTip();
+       // ToolTip tTip = new ToolTip();
         MenuStrip menu;
         ToolBar tBar;
         ImageList imList;
         My_TabControl MTControl = new My_TabControl();
-
-        ToolStripMenuItem _new;
-        ToolStripMenuItem save;
-        //public static OpenFileDialog OFDiaog = new OpenFileDialog();
         public Form1()
         {
             InitializeComponent();
@@ -36,9 +31,9 @@ namespace NotePadXX
             this.MainMenuStrip = menu;
             menu.BackColor = Color.BurlyWood;
             this.Controls.Add(menu);
-            _new = (ToolStripMenuItem)file.DropDownItems.Add("New");
+            ToolStripMenuItem _new = (ToolStripMenuItem)file.DropDownItems.Add("New");
             ToolStripMenuItem open = (ToolStripMenuItem)file.DropDownItems.Add("Open");
-            save = (ToolStripMenuItem)file.DropDownItems.Add("Save As");
+            ToolStripMenuItem save = (ToolStripMenuItem)file.DropDownItems.Add("Save As");
             file.DropDownItems.Add(new ToolStripSeparator());
             ToolStripMenuItem close = (ToolStripMenuItem)file.DropDownItems.Add("Close");
             ToolStripMenuItem font = (ToolStripMenuItem)edit.DropDownItems.Add("Font");
@@ -49,11 +44,12 @@ namespace NotePadXX
             open.Click += new System.EventHandler(open_Click);
             _new.Click += new System.EventHandler(new_Click);
             save.Click += new System.EventHandler(save_Click);
-
+            font.Click += new System.EventHandler(font_ButtonClick);
+            collor.Click += new System.EventHandler(color_ButtonClick);
             //file.DropDownItemClicked += new ToolStripItemClickedEventHandler(file_Click);
 
             //tabCtrl
-
+            //MTControl.Click += ToolStripItemClickedEventHandler(MTControl_Click);
             this.Controls.Add(MTControl);
            ;
 
@@ -87,30 +83,32 @@ namespace NotePadXX
             tBar.ButtonClick += new ToolBarButtonClickEventHandler(tBar_ButtonClick);
             this.Controls.Add(tBar);
             
-            //this.Controls.Add(new My_ToolBar());
-            //this.Control.Add(OFDiaog)
-
-
         }
-        void tBar_ButtonClick(object sender,ToolBarButtonClickEventArgs e)
+        void font_ButtonClick(object sender, System.EventArgs e)
         {
-            switch (e.Button.ImageIndex)
+            using(FontDialog fd = new FontDialog())
             {
-                case 0:
-                    open_Click(sender, e);
-                    break;
-                case 1:
-                    save_Click(sender, e);
-                    break;
-                case 2:
-                    MessageBox.Show("Экзамен(WinForms)\nСтудент - Лобода Р.Е.");
-                    break;
-                default:
-                    break;
-            }
+                fd.ShowColor = true;
+                C_Tab temp = (C_Tab)MTControl.SelectedTab;
+                if (fd.ShowDialog() == DialogResult.OK)
+                {
+                    temp.tb.Font = fd.Font;
+                    temp.tb.ForeColor = fd.Color;
 
+                }
+            }
         }
-        void close_Click(object sender, System.EventArgs e) { this.Close(); }
+
+        void color_ButtonClick(object sender, System.EventArgs e)
+        {
+            using (ColorDialog cd = new ColorDialog())
+            {
+                if (cd.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+            }
+        }
         void open_Click(object sender, System.EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -148,7 +146,26 @@ namespace NotePadXX
             }
 
         }
+        void tBar_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+        {
+            switch (e.Button.ImageIndex)
+            {
+                case 0:
+                    new_Click(sender, e);
+                    break;
+                case 1:
+                    save_Click(sender, e);
+                    break;
+                case 2:
+                    MessageBox.Show("Экзамен(WinForms)\nСтудент - Лобода Р.Е.");
+                    break;
+                default:
+                    break;
+            }
+
+        }
         void new_Click(object sender, System.EventArgs e) { MTControl.TabPages.Add(new C_Tab()); }
+        void close_Click(object sender, System.EventArgs e) { this.Close(); }
     }
 }
 

@@ -22,6 +22,8 @@ namespace NotePadXX
         public TextBox tb;
         public C_Tab(string title = "new",string _text = "")
         {
+            this.ForeColor = Color.DarkOliveGreen;
+            this.BackColor = Color.Coral;
             this.Text = title;
             tb = new TextBox { Multiline = true,Text = _text, ScrollBars = ScrollBars.Both, Size = ClientSize, Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right };
             //tb.ScrollBars = ScrollBars.Both;
