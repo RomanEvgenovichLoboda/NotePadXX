@@ -13,7 +13,6 @@ namespace NotePadXX
 {
     public partial class Form1 : Form
     {
-       // ToolTip tTip = new ToolTip();
         MenuStrip menu;
         ToolBar tBar;
         ImageList imList;
@@ -22,14 +21,11 @@ namespace NotePadXX
         {
             InitializeComponent();
             this.BackColor = Color.DarkSeaGreen;
-            //toolStripmenu
+    //toolStripmenu
             menu = new MenuStrip();
             ToolStripMenuItem file = (ToolStripMenuItem)menu.Items.Add("File");
             ToolStripMenuItem edit = (ToolStripMenuItem)menu.Items.Add("Edit");
-            //menu.Location = new Point(0,50);
-           
             menu.BackColor = Color.BurlyWood;
-           
             ToolStripMenuItem _new = (ToolStripMenuItem)file.DropDownItems.Add("New");
             ToolStripMenuItem open = (ToolStripMenuItem)file.DropDownItems.Add("Open");
             ToolStripMenuItem save = (ToolStripMenuItem)file.DropDownItems.Add("Save As");
@@ -45,27 +41,29 @@ namespace NotePadXX
             save.Click += new System.EventHandler(save_Click);
             font.Click += new System.EventHandler(font_ButtonClick);
             collor.Click += new System.EventHandler(color_ButtonClick);
-
             this.MainMenuStrip = menu;
             this.Controls.Add(menu);
-            //file.DropDownItemClicked += new ToolStripItemClickedEventHandler(file_Click);
-
-            //tabCtrl
-            //MTControl.Click += ToolStripItemClickedEventHandler(MTControl_Click);
             MTControl.Size = ClientSize;
             this.Controls.Add(MTControl);
-
-            //toolBar
+     //toolBar
             imList = new ImageList();
             imList.ImageSize = new Size(30, 30);
             imList.Images.Add(new Bitmap(Properties.Resources.application_add));
             imList.Images.Add(new Bitmap(Properties.Resources.drive_disk));
+            imList.Images.Add(new Bitmap(Properties.Resources.resultset_previous));
+            imList.Images.Add(new Bitmap(Properties.Resources.resultset_next));
+            imList.Images.Add(new Bitmap(Properties.Resources.cut));
+            imList.Images.Add(new Bitmap(Properties.Resources.paste_word));
             imList.Images.Add(new Bitmap(Properties.Resources.information));
             tBar = new ToolBar();
             tBar.ImageList = imList;
             ToolBarButton toolBarButton1 = new ToolBarButton();
             ToolBarButton toolBarButton2 = new ToolBarButton();
             ToolBarButton toolBarButton3 = new ToolBarButton();
+            ToolBarButton toolBarButton4 = new ToolBarButton();
+            ToolBarButton toolBarButton5 = new ToolBarButton();
+            ToolBarButton toolBarButton6 = new ToolBarButton();
+            ToolBarButton toolBarButton7 = new ToolBarButton();
             ToolBarButton tbSeparator = new ToolBarButton();
             tbSeparator.Style = ToolBarButtonStyle.Separator;
             toolBarButton1.ImageIndex = 0;
@@ -73,20 +71,32 @@ namespace NotePadXX
             toolBarButton2.ImageIndex = 1;
             toolBarButton2.ToolTipText = "Save";
             toolBarButton3.ImageIndex = 2;
-            toolBarButton3.ToolTipText = "Info";
+            toolBarButton3.ToolTipText = "Redo";
+            toolBarButton4.ImageIndex = 3;
+            toolBarButton4.ToolTipText = "Undo";
+            toolBarButton5.ImageIndex = 4;
+            toolBarButton5.ToolTipText = "Cut";
+            toolBarButton6.ImageIndex = 5;
+            toolBarButton6.ToolTipText = "Paste";
+            toolBarButton7.ImageIndex = 6;
+            toolBarButton7.ToolTipText = "Info";
             tBar.Buttons.Add(toolBarButton1);
-            tBar.Buttons.Add(tbSeparator);
             tBar.Buttons.Add(toolBarButton2);
             tBar.Buttons.Add(tbSeparator);
             tBar.Buttons.Add(toolBarButton3);
+            tBar.Buttons.Add(toolBarButton4);
+            tBar.Buttons.Add(tbSeparator);
+            tBar.Buttons.Add(toolBarButton5);
+            tBar.Buttons.Add(toolBarButton6);
+            tBar.Buttons.Add(tbSeparator);
+            tBar.Buttons.Add(toolBarButton7);
             tBar.Appearance = ToolBarAppearance.Flat;
             tBar.BorderStyle = BorderStyle.Fixed3D;
             tBar.Location = new Point(0, 24);
             tBar.ButtonClick += new ToolBarButtonClickEventHandler(tBar_ButtonClick);
             this.Controls.Add(tBar);
-            
         }
-       public void font_ButtonClick(object sender, System.EventArgs e)
+        public void font_ButtonClick(object sender, System.EventArgs e)
         {
             try
             {
@@ -105,7 +115,6 @@ namespace NotePadXX
             }
             catch (Exception m) { MessageBox.Show(m.Message); }
         }
-
         void color_ButtonClick(object sender, System.EventArgs e)
         {
             try
@@ -129,10 +138,8 @@ namespace NotePadXX
                 {
                     MTControl.TabPages.Add(new C_Tab(ofd.SafeFileName,File.ReadAllText(ofd.FileName)));
                     this.Text = ofd.FileName;
-                   
                 }
             }
-            
         }
         void save_Click(object sender, System.EventArgs e)
         {
@@ -144,10 +151,7 @@ namespace NotePadXX
                     sfd.Filter = "TEXT|*.txt|ALL|*.*";
                     sfd.Title = "Choose your destiny";
                     //sfd.FileName = temp.Text;
-                    if (sfd.ShowDialog() == DialogResult.OK)
-                    {
-                        File.WriteAllText(sfd.FileName, temp.tb.Text);
-                    }
+                    if (sfd.ShowDialog() == DialogResult.OK) {File.WriteAllText(sfd.FileName, temp.tb.Text);}
                 }
             }
             catch (Exception m) {MessageBox.Show(m.Message);}
@@ -163,12 +167,23 @@ namespace NotePadXX
                     save_Click(sender, e);
                     break;
                 case 2:
+                    SendKeys.Send("^z");
+                    break;
+                case 3:
+                    SendKeys.Send("^y");
+                    break;
+                case 4:
+                    SendKeys.Send("^c");
+                    break;
+                case 5:
+                    SendKeys.Send("^v");
+                    break;
+                case 6:
                     MessageBox.Show("Экзамен(WinForms)\nСтудент - Лобода Р.Е.");
                     break;
                 default:
                     break;
             }
-
         }
         void new_Click(object sender, System.EventArgs e) { MTControl.TabPages.Add(new C_Tab()); }
         void close_Click(object sender, System.EventArgs e) { this.Close(); }

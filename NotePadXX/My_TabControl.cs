@@ -40,7 +40,7 @@ namespace NotePadXX
             {
                 var tabRect = GetTabRect(i);
                 tabRect.Inflate(-2, -2);
-                var closeImage = Properties.Resources.Close;
+                var closeImage = Properties.Resources.cross;
                 var imageRect = new Rectangle(
                     (tabRect.Right - closeImage.Width),
                     tabRect.Top + (tabRect.Height - closeImage.Height) / 2,
