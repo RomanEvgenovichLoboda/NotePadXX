@@ -16,9 +16,9 @@ namespace NotePadXX
         {
             imList = new ImageList();
             imList.ImageSize = new Size(30, 30);
-            imList.Images.Add(new Bitmap("38.JPG"));
-            imList.Images.Add(new Bitmap("disk.PNG"));
-            imList.Images.Add(new Bitmap("image3.JPG"));
+            imList.Images.Add(new Bitmap(Properties.Resources.application_add));
+            imList.Images.Add(new Bitmap(Properties.Resources.application_add));
+            imList.Images.Add(new Bitmap(Properties.Resources.application_add));
             tBar = new ToolBar();
             tBar.ImageList = imList;
             ToolBarButton toolBarButton1 = new ToolBarButton();
@@ -36,7 +36,7 @@ namespace NotePadXX
             tBar.Buttons.Add(toolBarButton3);
             tBar.Appearance = ToolBarAppearance.Flat;
             tBar.BorderStyle = BorderStyle.Fixed3D;
-            //tBar.Location = new Point(0, 24);
+            tBar.Location = new Point(0, 24);
             //this.Controls.Add(tBar);
         }
     }
