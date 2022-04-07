@@ -11,6 +11,7 @@ namespace NotePadXX
     {
         public My_TabControl()
         {
+          
             Location = new Point(0, 70);
             Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 
