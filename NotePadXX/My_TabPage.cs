@@ -7,10 +7,10 @@ using System.Drawing;
 using System.Windows.Forms;
 namespace NotePadXX
 {
-    public class C_Tab : TabPage
+    public class My_TabPage : TabPage
     { 
         public TextBox tb;
-        public C_Tab(string title = "new",string _text = "")
+        public My_TabPage(string title = "new",string _text = "")
         {
             this.ForeColor = Color.DarkOliveGreen;
             this.BackColor = Color.Coral;

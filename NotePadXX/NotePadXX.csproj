@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="C_Tab.cs">
+    <Compile Include="My_TabPage.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form1.cs">
@@ -54,6 +54,9 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="My_MenuStrip.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="My_TabControl.cs">
       <SubType>Component</SubType>

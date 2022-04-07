@@ -13,7 +13,7 @@ namespace NotePadXX
 {
     public partial class Form1 : Form
     {
-        MenuStrip menu;
+        My_MenuStrip menu;
         ToolBar tBar;
         ImageList imList;
         My_TabControl MTControl = new My_TabControl();
@@ -21,26 +21,14 @@ namespace NotePadXX
         {
             InitializeComponent();
             this.BackColor = Color.DarkSeaGreen;
-    //toolStripmenu
-            menu = new MenuStrip();
-            ToolStripMenuItem file = (ToolStripMenuItem)menu.Items.Add("File");
-            ToolStripMenuItem edit = (ToolStripMenuItem)menu.Items.Add("Edit");
-            menu.BackColor = Color.BurlyWood;
-            ToolStripMenuItem _new = (ToolStripMenuItem)file.DropDownItems.Add("New");
-            ToolStripMenuItem open = (ToolStripMenuItem)file.DropDownItems.Add("Open");
-            ToolStripMenuItem save = (ToolStripMenuItem)file.DropDownItems.Add("Save As");
-            file.DropDownItems.Add(new ToolStripSeparator());
-            ToolStripMenuItem close = (ToolStripMenuItem)file.DropDownItems.Add("Close");
-            ToolStripMenuItem font = (ToolStripMenuItem)edit.DropDownItems.Add("Font");
-            ToolStripMenuItem collor = (ToolStripMenuItem)edit.DropDownItems.Add("Color");
-            close.ShortcutKeys = Keys.Alt | Keys.C;
-            close.ShowShortcutKeys = true;
-            close.Click += new System.EventHandler(close_Click);
-            open.Click += new System.EventHandler(open_Click);
-            _new.Click += new System.EventHandler(new_Click);
-            save.Click += new System.EventHandler(save_Click);
-            font.Click += new System.EventHandler(font_ButtonClick);
-            collor.Click += new System.EventHandler(color_ButtonClick);
+     //toolStripmenu
+            menu = new My_MenuStrip();
+            menu.close.Click += new System.EventHandler(close_Click);
+            menu.open.Click += new System.EventHandler(open_Click);
+            menu._new.Click += new System.EventHandler(new_Click);
+            menu.save.Click += new System.EventHandler(save_Click);
+            menu.font.Click += new System.EventHandler(font_ButtonClick);
+            menu.collor.Click += new System.EventHandler(color_ButtonClick);
             this.MainMenuStrip = menu;
             this.Controls.Add(menu);
             MTControl.Size = ClientSize;
@@ -103,7 +91,7 @@ namespace NotePadXX
                 using (FontDialog fd = new FontDialog())
                 {
                     fd.ShowColor = true;
-                    C_Tab temp = (C_Tab)MTControl.SelectedTab;
+                    My_TabPage temp = (My_TabPage)MTControl.SelectedTab;
                     if (fd.ShowDialog() == DialogResult.OK)
                     {
                         temp.tb.Font = fd.Font;
@@ -121,7 +109,7 @@ namespace NotePadXX
             {
                 using (ColorDialog cd = new ColorDialog())
                 {
-                    C_Tab temp = (C_Tab)MTControl.SelectedTab;
+                    My_TabPage temp = (My_TabPage)MTControl.SelectedTab;
                     cd.Color = temp.tb.BackColor;
                     if (cd.ShowDialog() == DialogResult.OK) {temp.tb.BackColor = cd.Color;}
                 }
@@ -136,7 +124,7 @@ namespace NotePadXX
                 ofd.Title = "Choose your destiny";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    MTControl.TabPages.Add(new C_Tab(ofd.SafeFileName,File.ReadAllText(ofd.FileName)));
+                    MTControl.TabPages.Add(new My_TabPage(ofd.SafeFileName,File.ReadAllText(ofd.FileName)));
                     this.Text = ofd.FileName;
                 }
             }
@@ -147,10 +135,9 @@ namespace NotePadXX
             {
                 using (SaveFileDialog sfd = new SaveFileDialog())
                 {
-                    C_Tab temp = (C_Tab)MTControl.SelectedTab;
+                    My_TabPage temp = (My_TabPage)MTControl.SelectedTab;
                     sfd.Filter = "TEXT|*.txt|ALL|*.*";
                     sfd.Title = "Choose your destiny";
-                    //sfd.FileName = temp.Text;
                     if (sfd.ShowDialog() == DialogResult.OK) {File.WriteAllText(sfd.FileName, temp.tb.Text);}
                 }
             }
@@ -185,9 +172,7 @@ namespace NotePadXX
                     break;
             }
         }
-        void new_Click(object sender, System.EventArgs e) { MTControl.TabPages.Add(new C_Tab()); }
+        void new_Click(object sender, System.EventArgs e) { MTControl.TabPages.Add(new My_TabPage()); }
         void close_Click(object sender, System.EventArgs e) { this.Close(); }
     }
 }
-
-
