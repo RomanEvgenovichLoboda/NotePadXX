@@ -27,9 +27,9 @@ namespace NotePadXX
             ToolStripMenuItem file = (ToolStripMenuItem)menu.Items.Add("File");
             ToolStripMenuItem edit = (ToolStripMenuItem)menu.Items.Add("Edit");
             //menu.Location = new Point(0,50);
-            this.MainMenuStrip = menu;
+           
             menu.BackColor = Color.BurlyWood;
-            this.Controls.Add(menu);
+           
             ToolStripMenuItem _new = (ToolStripMenuItem)file.DropDownItems.Add("New");
             ToolStripMenuItem open = (ToolStripMenuItem)file.DropDownItems.Add("Open");
             ToolStripMenuItem save = (ToolStripMenuItem)file.DropDownItems.Add("Save As");
@@ -45,6 +45,9 @@ namespace NotePadXX
             save.Click += new System.EventHandler(save_Click);
             font.Click += new System.EventHandler(font_ButtonClick);
             collor.Click += new System.EventHandler(color_ButtonClick);
+
+            this.MainMenuStrip = menu;
+            this.Controls.Add(menu);
             //file.DropDownItemClicked += new ToolStripItemClickedEventHandler(file_Click);
 
             //tabCtrl
@@ -83,7 +86,7 @@ namespace NotePadXX
             this.Controls.Add(tBar);
             
         }
-        void font_ButtonClick(object sender, System.EventArgs e)
+       public void font_ButtonClick(object sender, System.EventArgs e)
         {
             try
             {
