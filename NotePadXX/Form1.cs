@@ -103,8 +103,11 @@ namespace NotePadXX
         {
             using (ColorDialog cd = new ColorDialog())
             {
+                C_Tab temp = (C_Tab)MTControl.SelectedTab;
+               // cd.Color = temp.tb.BackColor;
                 if (cd.ShowDialog() == DialogResult.OK)
                 {
+                    temp.tb.BackColor = cd.Color;
 
                 }
             }
