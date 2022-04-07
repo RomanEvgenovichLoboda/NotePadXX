@@ -42,6 +42,7 @@ namespace NotePadXX
             imList.Images.Add(new Bitmap(Properties.Resources.resultset_next));
             imList.Images.Add(new Bitmap(Properties.Resources.cut));
             imList.Images.Add(new Bitmap(Properties.Resources.paste_word));
+            imList.Images.Add(new Bitmap(Properties.Resources.contrast_high));
             imList.Images.Add(new Bitmap(Properties.Resources.information));
             tBar = new ToolBar();
             tBar.ImageList = imList;
@@ -52,6 +53,7 @@ namespace NotePadXX
             ToolBarButton toolBarButton5 = new ToolBarButton();
             ToolBarButton toolBarButton6 = new ToolBarButton();
             ToolBarButton toolBarButton7 = new ToolBarButton();
+            ToolBarButton toolBarButton8 = new ToolBarButton();
             ToolBarButton tbSeparator = new ToolBarButton();
             tbSeparator.Style = ToolBarButtonStyle.Separator;
             toolBarButton1.ImageIndex = 0;
@@ -67,7 +69,9 @@ namespace NotePadXX
             toolBarButton6.ImageIndex = 5;
             toolBarButton6.ToolTipText = "Paste";
             toolBarButton7.ImageIndex = 6;
-            toolBarButton7.ToolTipText = "Info";
+            toolBarButton7.ToolTipText = "Day/Night";
+            toolBarButton8.ImageIndex = 7;
+            toolBarButton8.ToolTipText = "Info";
             tBar.Buttons.Add(toolBarButton1);
             tBar.Buttons.Add(toolBarButton2);
             tBar.Buttons.Add(tbSeparator);
@@ -78,6 +82,8 @@ namespace NotePadXX
             tBar.Buttons.Add(toolBarButton6);
             tBar.Buttons.Add(tbSeparator);
             tBar.Buttons.Add(toolBarButton7);
+            tBar.Buttons.Add(tbSeparator);
+            tBar.Buttons.Add(toolBarButton8);
             tBar.Appearance = ToolBarAppearance.Flat;
             tBar.BorderStyle = BorderStyle.Fixed3D;
             tBar.Location = new Point(0, 24);
@@ -160,12 +166,29 @@ namespace NotePadXX
                     SendKeys.Send("^y");
                     break;
                 case 4:
-                    SendKeys.Send("^c");
+                    SendKeys.Send("^x");
                     break;
                 case 5:
                     SendKeys.Send("^v");
                     break;
                 case 6:
+                    My_TabPage temp = (My_TabPage)MTControl.SelectedTab;
+                    if(temp.tb.BackColor == Color.Black)
+                    {
+                        temp.tb.BackColor = Color.White;
+                        temp.tb.ForeColor = Color.Black;
+                        temp.BackColor = Color.Black;
+                        temp.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        temp.tb.BackColor = Color.Black;
+                        temp.tb.ForeColor = Color.White;
+                        temp.BackColor = Color.White;
+                        temp.ForeColor = Color.White;
+                    }
+                    break;
+                case 7:
                     MessageBox.Show("Экзамен(WinForms)\nСтудент - Лобода Р.Е.");
                     break;
                 default:

@@ -10,8 +10,8 @@ namespace NotePadXX
 {
     public class My_MenuStrip:MenuStrip
     {
-        public ToolStripMenuItem file;
-        public ToolStripMenuItem edit;
+        protected ToolStripMenuItem file;
+        protected ToolStripMenuItem edit;
         public ToolStripMenuItem _new;
         public ToolStripMenuItem open;
         public ToolStripMenuItem save;

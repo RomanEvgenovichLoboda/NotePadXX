@@ -24,11 +24,9 @@ namespace NotePadXX
             var tabPage = TabPages[e.Index];
             var tabRect = GetTabRect(e.Index);
             tabRect.Inflate(-2, -2);
-            
             var closeImage = Properties.Resources.Close;
             e.Graphics.DrawImage(closeImage, (tabRect.Right - closeImage.Width), tabRect.Top + (tabRect.Height - closeImage.Height) / 2);
-            TextRenderer.DrawText(e.Graphics, tabPage.Text, tabPage.Font,
-                tabRect, tabPage.ForeColor, TextFormatFlags.Left);
+            TextRenderer.DrawText(e.Graphics, tabPage.Text, tabPage.Font, tabRect, tabPage.ForeColor, TextFormatFlags.Left);
         }
         private void tabControl1_MouseDown(object sender, MouseEventArgs e)
         {
