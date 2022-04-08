@@ -172,21 +172,25 @@ namespace NotePadXX
                     SendKeys.Send("^v");
                     break;
                 case 6:
-                    My_TabPage temp = (My_TabPage)MTControl.SelectedTab;
-                    if(temp.tb.BackColor == Color.Black)
+                    try
                     {
-                        temp.tb.BackColor = Color.White;
-                        temp.tb.ForeColor = Color.Black;
-                        temp.BackColor = Color.Black;
-                        temp.ForeColor = Color.Black;
+                        My_TabPage temp = (My_TabPage)MTControl.SelectedTab;
+                        if (temp.tb.BackColor == Color.Black)
+                        {
+                            temp.tb.BackColor = Color.White;
+                            temp.tb.ForeColor = Color.Black;
+                            temp.BackColor = Color.Black;
+                            temp.ForeColor = Color.Black;
+                        }
+                        else
+                        {
+                            temp.tb.BackColor = Color.Black;
+                            temp.tb.ForeColor = Color.White;
+                            temp.BackColor = Color.White;
+                            temp.ForeColor = Color.White;
+                        }
                     }
-                    else
-                    {
-                        temp.tb.BackColor = Color.Black;
-                        temp.tb.ForeColor = Color.White;
-                        temp.BackColor = Color.White;
-                        temp.ForeColor = Color.White;
-                    }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); }
                     break;
                 case 7:
                     MessageBox.Show("Экзамен(WinForms)\nСтудент - Лобода Р.Е.");
